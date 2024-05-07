@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Calorie Planner</title>
+        <!-- Materialize CSS -->
+        <link
+            href="https://fonts.googleapis.com/icon?family=Material+Icons"
+            rel="stylesheet"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+        />
+        <link rel="stylesheet" href="styles.css" />
+        <!-- Your custom CSS file -->
+        <link rel="icon" type="image/x-icon" href="/images/logo.jpeg" />
+        <style>
+            body {
+                background-color: #f0f0f0;
+            }
+            .navbar {
+                background-color: #26a69a;
+            }
+            .dropdown-content {
+                background-color: #26a69a;
+            }
+            .dropdown-content a {
+                color: #ffffff !important;
+            }
+        </style>
+    </head>
+    <body>
+        <nav class="navbar">
+            <div class="container text-white">
+                <div class="nav-wrapper">
+                    <img
+                        src="images/logo.jpeg"
+                        height="50px"
+                        style="margin: 10px"
+                    />
+                    <a href="index.html" class="brand-logo"> HealthCorp</a>
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+                        <li>
+                            <a
+                                href="#"
+                                class="dropdown-trigger"
+                                data-target="workouts-dropdown"
+                                >Workouts<i class="material-icons right"
+                                    >arrow_drop_down</i
+                                ></a
+                            >
+                        </li>
+                        <li><a href="/cal_planner.html">Calorie Planner</a></li>
+                        <li><a href="/bmi_calc.html">BMI Calculator</a></li>
+                        <li><a href="#">About Our Company</a></li>
+                        <li>
+                            <a
+                                href="#"
+                                class="dropdown-trigger"
+                                data-target="user-dropdown"
+                                ><i class="material-icons">account_circle</i></a
+                            >
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <main>
+            <div class="container">
+                <h1 class="center-align">Calorie Planner</h1>
+                <form id="calorie-form" class="col s12">
+                    <div class="row">
+                        <div class="input-field col s6 offset-s3">
+                            <input
+                                id="intake-calorie"
+                                type="number"
+                                class="validate"
+                                required
+                            />
+                            <label for="intake-calorie">Intake Calorie</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s6 offset-s3">
+                            <p>
+                                <label>
+                                    <input
+                                        name="diet"
+                                        type="radio"
+                                        value="vegetarian"
+                                        checked
+                                    />
+                                    <span>Vegetarian</span>
+                                </label>
+                            </p>
+                            <p>
+                                <label>
+                                    <input
+                                        name="diet"
+                                        type="radio"
+                                        value="non-vegetarian"
+                                    />
+                                    <span>Non-Vegetarian</span>
+                                </label>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s6 offset-s3 center-align">
+                            <button
+                                id="generate-plan"
+                                class="btn waves-effect waves-light"
+                                type="button"
+                                name="action"
+                                onclick="helo()"
+                            >
+                                Generate Meal Plan
+                                <i class="material-icons right">send</i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <div id="meal-plan" class="row"></div>
+            </div>
+        </main>
+
+        <footer>
+            <!-- Footer content -->
+        </footer>
+
+        <!-- Materialize JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <!-- Your custom JavaScript file -->
+
+        <script>
+            function helo() {
+                var generatePlanButton =
+                    document.getElementById("generate-plan");
+                if (generatePlanButton) {
+                    generatePlanButton.addEventListener("click", function () {
+                        console.log("asd");
+                        var intakeCalorie =
+                            document.getElementById("intake-calorie").value;
+                        var dietType = document.querySelector(
+                            'input[name="diet"]:checked'
+                        ).value;
+
+                        // Hardcoded sample data for meal options
+                        var mealData = [];
+                        if (dietType === "vegetarian") {
+                            mealData = [
+                                {
+                                    food: "Rice",
+                                    calories: 200,
+                                    grams: 150,
+                                    total: 300,
+                                    macros: "Carbs: 40g, Protein: 5g, Fat: 1g",
+                                    image: "data:image/jpeg;base64,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",
+                                },
+                                {
+                                    food: "Chapati",
+                                    calories: 150,
+                                    grams: 100,
+                                    total: 200,
+                                    macros: "Carbs: 30g, Protein: 3g, Fat: 1g",
+                                    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdHwYKNERxquWq5UvYWU4PTCT8cBIOEQrDt6ky8JXYbg&s",
+                                },
+                                {
+                                    food: "Dal",
+                                    calories: 250,
+                                    grams: 200,
+                                    total: 400,
+                                    macros: "Carbs: 40g, Protein: 10g, Fat: 2g",
+                                    image: "https://lh7-us.googleusercontent.com/hl2xTkMHkJRRdNje-B1W-wO9oQ3yQyDQCVojl9jTa-Ps0BkMjLvhUqwU0jH0ahrd89QlH8OSsPzGrjWp5Usxbc5ZXZok0Kl2t6XYzkH-KGHsPlOCUadXHJ6wDenEqXQc7BRODYqXcvvHIxe3Iun3Tw",
+                                },
+                                {
+                                    food: "Paneer",
+                                    calories: 300,
+                                    grams: 100,
+                                    total: 400,
+                                    macros: "Carbs: 20g, Protein: 15g, Fat: 5g",
+                                    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSovlCvNV0D9Ip_mY2D1G-_HgS1HOcVEYxYkapRsN3vyw&s",
+                                },
+                            ];
+                        } else if (dietType === "non-vegetarian") {
+                            mealData = [
+                                {
+                                    food: "Chicken",
+                                    calories: 300,
+                                    grams: 150,
+                                    total: 450,
+                                    macros: "Carbs: 0g, Protein: 30g, Fat: 5g",
+                                    image: "https://recipes.net/wp-content/uploads/2021/10/healthy-chicken-recipes.jpg",
+                                },
+                                {
+                                    food: "Rice",
+                                    calories: 200,
+                                    grams: 150,
+                                    total: 300,
+                                    macros: "Carbs: 40g, Protein: 5g, Fat: 1g",
+                                    image: "data:image/jpeg;base64,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",
+                                },
+                                {
+                                    food: "Potato",
+                                    calories: 150,
+                                    grams: 100,
+                                    total: 200,
+                                    macros: "Carbs: 30g, Protein: 2g, Fat: 1g",
+                                    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmywT1rJuKZUkecbZGby0LrS07n8XBhXA9WCShQsJLDg&s",
+                                },
+                                {
+                                    food: "Fruits",
+                                    calories: 100,
+                                    grams: 150,
+                                    total: 150,
+                                    macros: "Carbs: 30g, Protein: 1g, Fat: 0g",
+                                    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8lCoWZ2b41lVuwJPJXKMPXRsAwp8i3nxyjB9vastGfyNkEFA--NcgFZCUCbpKt8IL1J0&usqp=CAU",
+                                },
+                            ];
+                        }
+
+                        // Build the HTML for the meal plan table
+                        var html =
+                            "<table><thead><tr><th>Food</th><th>Calories</th><th>Grams</th><th>Total</th><th>Macros</th><th>Image</th></tr></thead><tbody>";
+
+                        // Loop through the meal data and append rows to the table
+                        mealData.forEach((meal) => {
+                            html += `<tr><td>${meal.food}</td><td>${meal.calories}</td><td>${meal.grams}</td><td>${meal.total}</td><td>${meal.macros}</td><td><img src="${meal.image}" alt="${meal.food}" style="width: 95px;"></td></tr>`;
+                        });
+
+                        html += "</tbody></table>";
+
+                        // Display the meal plan table in the designated div
+                        document.getElementById("meal-plan").innerHTML = html;
+                    });
+                } else {
+                    console.error("Generate Plan button not found!");
+                }
+            }
+        </script>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                console.log("ads");
+                var elems = document.querySelectorAll(".dropdown-trigger");
+                var instances = M.Dropdown.init(elems, {
+                    coverTrigger: false,
+                    alignment: "right",
+                });
+            });
+        </script>
+    </body>
+</html>
