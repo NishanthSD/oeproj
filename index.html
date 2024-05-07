@@ -41,12 +41,12 @@
 <body>
     <div class="container">
         <nav class="navbar green accent-4">
-            <div class="container text-white">
+            <div class="text-white">
                 <div class="nav-wrapper">
                     <img src="images/logo.jpeg" height="50px" style="margin: 10px;"/>
-                    <a href="index.html" class="brand-logo">HealthCorp</a>
+                    <a href="#" class="brand-logo">HealthCorp</a>
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
-                        <li><a href="#">About Our Company</a></li>
+                        <li><a href="about.html">About Our Company</a></li>
                     </ul>
                 </div>
             </div>
@@ -70,6 +70,20 @@
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script>
+        let cookies = document.cookie.split(";");
+        let username = "";
+        cookies.forEach((cookie) => {
+            let parts = cookie.split("=");
+            let name = parts[0].trim();
+            let value = parts[1];
+            if (name === "uname") {
+                username = decodeURIComponent(value);
+            }
+        });
+        if (username !== "") {
+            alert(username)
+            window.location.href ="dashboard.html";
+        }
         function loguser() {
             var username = document.getElementById("username").value;
             var password = document.getElementById("password").value;

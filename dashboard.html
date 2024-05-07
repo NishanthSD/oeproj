@@ -73,7 +73,9 @@
         <ul id="user-dropdown" class="dropdown-content">
             <li><p id="user"></p></li>
         </ul>
-
+        <article>
+            <h3 id="greet"></h3>
+        </article>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
         <script>
             document.addEventListener("DOMContentLoaded", function () {
@@ -82,8 +84,6 @@
                     coverTrigger: false,
                     alignment: "right",
                 });
-
-                // Parse cookies and display the username
                 let cookies = document.cookie.split(";");
                 let username = "";
                 cookies.forEach((cookie) => {
@@ -96,6 +96,7 @@
                 });
                 if (username !== "") {
                     document.getElementById("user").textContent = username;
+                    document.getElementById("greet").innerHTML = `Hello ${username}`
                 }
             });
         </script>
