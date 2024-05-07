@@ -80,7 +80,11 @@
         <nav class="navbar">
             <div class="container text-white" style="margin-top: 0px">
                 <div class="nav-wrapper">
-                    <img src="images/logo.jpeg" height="50px" style="margin: 10px;"/>
+                    <img
+                        src="images/logo.jpeg"
+                        height="50px"
+                        style="margin: 10px"
+                    />
                     <a href="index.html" class="brand-logo">HealthCorp</a>
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
                         <li>
@@ -132,7 +136,30 @@
         </div>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
         <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                var elems = document.querySelectorAll(".dropdown-trigger");
+                var instances = M.Dropdown.init(elems, {
+                    coverTrigger: false,
+                    alignment: "right",
+                });
+
+                // Parse cookies and display the username
+                let cookies = document.cookie.split(";");
+                let username = "";
+                cookies.forEach((cookie) => {
+                    let parts = cookie.split("=");
+                    let name = parts[0].trim();
+                    let value = parts[1];
+                    if (name === "uname") {
+                        username = decodeURIComponent(value);
+                    }
+                });
+                if (username !== "") {
+                    document.getElementById("user").textContent = username;
+                }
+            });
             function calculateBMI() {
                 var heightCM = parseFloat(
                     document.getElementById("height").value
@@ -160,5 +187,6 @@
                 }
             }
         </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     </body>
 </html>
