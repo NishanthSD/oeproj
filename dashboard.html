@@ -49,7 +49,7 @@
                                 ></a
                             >
                         </li>
-                        <li><a href="/cal_planner.html">Calorie Planner</a></li>
+                        <li><a href="#">Calorie Planner</a></li>
                         <li><a href="/bmi_calc.html">BMI Calculator</a></li>
                         <li><a href="#">About Our Company</a></li>
                         <li>
@@ -77,16 +77,14 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
         <script>
             document.addEventListener("DOMContentLoaded", function () {
-                console.log("ads");
                 var elems = document.querySelectorAll(".dropdown-trigger");
                 var instances = M.Dropdown.init(elems, {
                     coverTrigger: false,
                     alignment: "right",
                 });
-
-                // Parse cookies and display the username
                 let cookies = document.cookie.split(";");
                 let username = "";
+                let bmiValue = 0;
                 cookies.forEach((cookie) => {
                     let parts = cookie.split("=");
                     let name = parts[0].trim();
@@ -94,9 +92,18 @@
                     if (name === "uname") {
                         username = decodeURIComponent(value);
                     }
+                    if (name === "bmi") {
+                        bmiValue = parseInt(decodeURIComponent(value));
+                    }
                 });
                 if (username !== "") {
                     document.getElementById("user").textContent = username;
+                    document.getElementById(
+                        "greet"
+                    ).innerHTML = `Hello ${username}`;
+                }
+                if (bmiValue !== 0) {
+                    document.getElementById("bmicalc").textContent = bmiValue;
                 }
             });
         </script>

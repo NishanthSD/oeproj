@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cardio Workouts - HealthCorp</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="icon" type="image/x-icon" href="/images/logo.jpeg">
+    <style>
+        body {
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+            background-color: #26a69a;
+        }
+        .dropdown-content {
+            background-color: #26a69a;
+        }
+        .dropdown-content a {
+            color: #ffffff !important;
+        }
+        .workout-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .workout-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .workout-header h2 {
+            color: #333;
+        }
+        .timer-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        #timer {
+            font-size: 36px;
+            font-weight: bold;
+            color: #333;
+        }
+        .calorie-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        #calories-burned {
+            font-size: 24px;
+            color: #26a69a;
+        }
+        .animation-container {
+            text-align: center;
+        }
+        #animation {
+            width: 200px;
+            height: 200px;
+            background-color: #26a69a;
+            border-radius: 50%;
+            animation: pulse 2s infinite alternate;
+        }
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(1.2);
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container text-white">
+            <div class="nav-wrapper">
+                <img src="images/logo.jpeg" height="40px" style="margin: 10px"/>
+                <a href="index.html" class="brand-logo">HealthCorp</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li>
+                        <a href="#" class="dropdown-trigger" data-target="workouts-dropdown">Workouts<i class="material-icons right">arrow_drop_down</i></a>
+                    </li>
+                    <li><a href="#">Calorie Planner</a></li>
+                    <li><a href="/bmi_calc.html">BMI Calculator</a></li>
+                    <li><a href="#">About Our Company</a></li>
+                    <li>
+                        <a href="#" class="dropdown-trigger" data-target="user-dropdown"><i class="material-icons">account_circle</i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="workout-container">
+        <div class="workout-header">
+            <h2>Cardio Workout</h2>
+        </div>
+        <div class="timer-container">
+            <h3>Timer</h3>
+            <div id="timer">00:00:00</div>
+        </div>
+        <div class="calorie-container">
+            <h3>Calories Burned</h3>
+            <div id="calories-burned">0</div>
+        </div>
+        <div class="animation-container">
+            <div id="animation"></div>
+        </div>
+    </div>
+
+    <ul id="workouts-dropdown" class="dropdown-content">
+        <li><a href="#">Workout 1</a></li>
+        <li><a href="#">Workout 2</a></li>
+        <li><a href="#">Workout 3</a></li>
+        <li><a href="#">Workout 4</a></li>
+    </ul>
+    <ul id="user-dropdown" class="dropdown-content">
+        <li><p id="user">John Doe</p></li>
+    </ul>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var elems = document.querySelectorAll(".dropdown-trigger");
+            var instances = M.Dropdown.init(elems, {
+                coverTrigger: false,
+                alignment: "right",
+            });
+
+            // Timer
+            var timerElement = document.getElementById("timer");
+            var seconds = 0, minutes = 0, hours = 0;
+            setInterval(function () {
+                seconds++;
+                if (seconds >= 60) {
+                    seconds = 0;
+                    minutes++;
+                    if (minutes >= 60) {
+                        minutes = 0;
+                        hours++;
+                    }
+                }
+                timerElement.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
+            }, 1000);
+
+            // Calories Burned
+            var caloriesBurnedElement = document.getElementById("calories-burned");
+            var caloriesBurned = 0;
+            setInterval(function () {
+                // Assuming a basic formula for calorie burning based on time spent
+                caloriesBurned += 5; // Adjust as needed
+                caloriesBurnedElement.textContent = caloriesBurned;
+            }, 60000); // Update every minute
+        });
+    </script>
+</body>
+</html>
