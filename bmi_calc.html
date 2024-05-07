@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>BMI Calculator</title>
+        <link
+            href="https://fonts.googleapis.com/icon?family=Material+Icons"
+            rel="stylesheet"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+        />
+        <style>
+            body {
+                background-color: #f0f0f0;
+            }
+            .container {
+                margin-top: 50px;
+            }
+            .card-panel {
+                background-color: #ffffff;
+                border-radius: 10px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                padding: 20px;
+            }
+            .input-field input[type="text"] {
+                border-bottom: 1px solid #26a69a;
+                box-shadow: 0 1px 0 0 #26a69a;
+            }
+            .input-field input[type="text"]:focus:not([readonly]) {
+                border-bottom: 1px solid #26a69a;
+                box-shadow: 0 1px 0 0 #26a69a;
+            }
+            .input-field label {
+                color: #26a69a;
+            }
+            .input-field label.active {
+                color: #26a69a;
+            }
+            .input-field input[type="text"]:focus + label {
+                color: #26a69a;
+            }
+            .btn {
+                background-color: #26a69a;
+                border-radius: 25px;
+                margin-top: 20px;
+            }
+            .btn:hover {
+                background-color: #009688;
+            }
+            .result {
+                margin-top: 20px;
+                font-size: 20px;
+                font-weight: bold;
+                color: #26a69a;
+            }
+            .meaning {
+                margin-top: 10px;
+                font-size: 16px;
+                color: #666666;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="card-panel">
+                <h3>BMI Calculator</h3>
+                <div class="input-field">
+                    <input id="height" type="text" class="validate" />
+                    <label for="height">Height (in centimeters)</label>
+                </div>
+                <div class="input-field">
+                    <input id="weight" type="text" class="validate" />
+                    <label for="weight">Weight (in kilograms)</label>
+                </div>
+                <button
+                    class="btn waves-effect waves-light"
+                    onclick="calculateBMI()"
+                >
+                    Calculate BMI
+                </button>
+                <div id="result" class="result"></div>
+                <div id="meaning" class="meaning"></div>
+            </div>
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script>
+            function calculateBMI() {
+                var heightCM = parseFloat(
+                    document.getElementById("height").value
+                );
+                var heightM = heightCM / 100; // Convert height from cm to meters
+                var weight = parseFloat(
+                    document.getElementById("weight").value
+                );
+                var bmi = weight / (heightM * heightM);
+                document.getElementById("result").innerHTML =
+                    "Your BMI is: " + bmi.toFixed(2);
+                document.getElementById("meaning").innerHTML =
+                    getBMIMeaning(bmi);
+            }
+
+            function getBMIMeaning(bmi) {
+                if (bmi < 18.5) {
+                    return "Underweight";
+                } else if (bmi >= 18.5 && bmi < 24.9) {
+                    return "Normal weight";
+                } else if (bmi >= 24.9 && bmi < 29.9) {
+                    return "Overweight";
+                } else {
+                    return "Obese";
+                }
+            }
+        </script>
+    </body>
+</html>

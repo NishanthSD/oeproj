@@ -1,76 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HealthCorp</title>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <style>
-        body {
-            background-color: #f0f0f0;
-        }
-        .navbar {
-            background-color: #26a69a;
-        }
-        .dropdown-content {
-            background-color: #26a69a;
-        }
-        .dropdown-content a {
-            color: #ffffff !important;
-        }
-    </style>
-</head>
-<body>
-    <nav class="navbar">
-        <div class="container text-white">
-            <div class="nav-wrapper">
-                <a href="index.html" class="brand-logo"><i class="material-icons">favorite</i>HealthCorp</a>
-                <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="#" class="dropdown-trigger" data-target="workouts-dropdown">Workouts<i class="material-icons right">arrow_drop_down</i></a></li>
-                    <li><a href="#">Calorie Planner</a></li>
-                    <li><a href="#">BMI Calculator</a></li>
-                    <li><a href="#">About Our Company</a></li>
-                    <li><a href="#" class="dropdown-trigger" data-target="user-dropdown"><i class="material-icons">account_circle</i></a></li>
-                </ul>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>HealthCorp</title>
+        <link
+            href="https://fonts.googleapis.com/icon?family=Material+Icons"
+            rel="stylesheet"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+        />
+        <style>
+            body {
+                background-color: #f0f0f0;
+            }
+            .navbar {
+                background-color: #26a69a;
+            }
+            .dropdown-content {
+                background-color: #26a69a;
+            }
+            .dropdown-content a {
+                color: #ffffff !important;
+            }
+        </style>
+    </head>
+    <body>
+        <nav class="navbar">
+            <div class="container text-white">
+                <div class="nav-wrapper">
+                    <a href="index.html" class="brand-logo"
+                        ><i class="material-icons">favorite</i>HealthCorp</a
+                    >
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+                        <li>
+                            <a
+                                href="#"
+                                class="dropdown-trigger"
+                                data-target="workouts-dropdown"
+                                >Workouts<i class="material-icons right"
+                                    >arrow_drop_down</i
+                                ></a
+                            >
+                        </li>
+                        <li>
+                            <a href="/calorie_planner.html">Calorie Planner</a>
+                        </li>
+                        <li><a href="/bmi_calc.html">BMI Calculator</a></li>
+                        <li><a href="#">About Our Company</a></li>
+                        <li>
+                            <a
+                                href="#"
+                                class="dropdown-trigger"
+                                data-target="user-dropdown"
+                                ><i class="material-icons">account_circle</i></a
+                            >
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
-    <ul id="workouts-dropdown" class="dropdown-content">
-        <li><a href="#">Workout 1</a></li>
-        <li><a href="#">Workout 2</a></li>
-        <li><a href="#">Workout 3</a></li>
-        <li><a href="#">Workout 4</a></li>
-    </ul>
-    <ul id="user-dropdown" class="dropdown-content">
-        <li><p id = "user"></p></li>
-    </ul>
+        </nav>
+        <ul id="workouts-dropdown" class="dropdown-content">
+            <li><a href="#">Workout 1</a></li>
+            <li><a href="#">Workout 2</a></li>
+            <li><a href="#">Workout 3</a></li>
+            <li><a href="#">Workout 4</a></li>
+        </ul>
+        <ul id="user-dropdown" class="dropdown-content">
+            <li><p id="user"></p></li>
+        </ul>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var elems = document.querySelectorAll('.dropdown-trigger');
-            var instances = M.Dropdown.init(elems, {
-                coverTrigger: false,
-                alignment: 'right'
-            });
-            
-            // Parse cookies and display the username
-            let cookies = document.cookie.split(';');
-            let username = '';
-            cookies.forEach(cookie => {
-                let parts = cookie.split('=');
-                let name = parts[0].trim();
-                let value = parts[1];
-                if (name === 'uname') {
-                    username = decodeURIComponent(value);
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                var elems = document.querySelectorAll(".dropdown-trigger");
+                var instances = M.Dropdown.init(elems, {
+                    coverTrigger: false,
+                    alignment: "right",
+                });
+
+                // Parse cookies and display the username
+                let cookies = document.cookie.split(";");
+                let username = "";
+                cookies.forEach((cookie) => {
+                    let parts = cookie.split("=");
+                    let name = parts[0].trim();
+                    let value = parts[1];
+                    if (name === "uname") {
+                        username = decodeURIComponent(value);
+                    }
+                });
+                if (username !== "") {
+                    document.getElementById("user").textContent = username;
                 }
             });
-            if (username !== '') {
-                document.getElementById('user').textContent = username;
-            }
-        });
-    </script>
-    
-</body>
+        </script>
+    </body>
 </html>
