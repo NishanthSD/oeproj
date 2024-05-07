@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HealthCorp</title>
+    <title>Cardio Workouts - HealthCorp</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="icon" type="image/x-icon" href="/images/logo.jpeg">
@@ -21,7 +21,7 @@
         .dropdown-content a {
             color: #ffffff !important;
         }
-        .dashboard-container {
+        .workout-container {
             max-width: 800px;
             margin: 50px auto;
             padding: 20px;
@@ -29,53 +29,47 @@
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-        .dashboard-header {
+        .workout-header {
             text-align: center;
             margin-bottom: 30px;
         }
-        .dashboard-header h2 {
+        .workout-header h2 {
             color: #333;
         }
-        .dashboard-stats {
-            display: flex;
-            justify-content: space-between;
+        .timer-container {
+            text-align: center;
             margin-bottom: 30px;
         }
-        .dashboard-stat {
-            flex: 1;
-            text-align: center;
-            padding: 20px;
-            background-color: #f2f2f2;
-            border-radius: 5px;
-        }
-        .dashboard-stat i {
+        #timer {
             font-size: 36px;
+            font-weight: bold;
+            color: #333;
+        }
+        .calorie-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        #calories-burned {
+            font-size: 24px;
             color: #26a69a;
         }
-        .dashboard-stat p {
-            margin-top: 10px;
-            font-size: 18px;
-            color: #666;
+        .animation-container {
+            text-align: center;
         }
-        .dashboard-content {
-            background-color: #f9f9f9;
-            padding: 20px;
-            border-radius: 5px;
+        #animation {
+            width: 200px;
+            height: 200px;
+            background-color: #26a69a;
+            border-radius: 50%;
+            animation: pulse 2s infinite alternate;
         }
-        #greet {
-            font-size: 24px;
-            color: #333;
-            margin-bottom: 20px;
-        }
-        #user {
-            font-size: 18px;
-            color: #666;
-            margin-bottom: 20px;
-        }
-        article p {
-            font-size: 16px;
-            color: #444;
-            line-height: 1.6;
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(1.2);
+            }
         }
     </style>
 </head>
@@ -100,37 +94,25 @@
         </div>
     </nav>
 
-    <div class="dashboard-container">
-        <div class="dashboard-header">
-            <h2>Welcome to HealthCorp Dashboard</h2>
+    <div class="workout-container">
+        <div class="workout-header">
+            <h2>Cardio Workout</h2>
         </div>
-        <div class="dashboard-stats">
-            <div class="dashboard-stat">
-                <i class="material-icons">fitness_center</i>
-                <p>Total Workouts</p>
-                <p>10</p>
-            </div>
-            <div class="dashboard-stat">
-                <i class="material-icons">local_dining</i>
-                <p>Calories Burned</p>
-                <p>5000</p>
-            </div>
-            <div class="dashboard-stat">
-                <i class="material-icons">assignment</i>
-                <p>BMI Calculations</p>
-                <p id="bmicalc">50</p>
-            </div>
+        <div class="timer-container">
+            <h3>Timer</h3>
+            <div id="timer">00:00:00</div>
         </div>
-        <div class="dashboard-content">
-            <article>
-                <h3 id="greet">Hello, User!</h3>
-                <p>Welcome to your HealthCorp dashboard. Here, you can track your workouts, plan your meals, calculate your BMI, and get to know more about our company.</p>
-            </article>
+        <div class="calorie-container">
+            <h3>Calories Burned</h3>
+            <div id="calories-burned">0</div>
+        </div>
+        <div class="animation-container">
+            <div id="animation"></div>
         </div>
     </div>
 
     <ul id="workouts-dropdown" class="dropdown-content">
-        <li><a href="/workouts/w1.html">Workout 1</a></li>
+        <li><a href="#">Workout 1</a></li>
         <li><a href="#">Workout 2</a></li>
         <li><a href="#">Workout 3</a></li>
         <li><a href="#">Workout 4</a></li>
@@ -147,27 +129,31 @@
                 coverTrigger: false,
                 alignment: "right",
             });
-            let cookies = document.cookie.split(";");
-            let username = "";
-            let bmiValue = 0;
-            cookies.forEach((cookie) => {
-                let parts = cookie.split("=");
-                let name = parts[0].trim();
-                let value = parts[1];
-                if (name === "uname") {
-                    username = decodeURIComponent(value);
+
+            // Timer
+            var timerElement = document.getElementById("timer");
+            var seconds = 0, minutes = 0, hours = 0;
+            setInterval(function () {
+                seconds++;
+                if (seconds >= 60) {
+                    seconds = 0;
+                    minutes++;
+                    if (minutes >= 60) {
+                        minutes = 0;
+                        hours++;
+                    }
                 }
-                if(name === "bmi"){
-                    bmiValue = parseInt(decodeURIComponent(value));
-                }
-            });
-            if (username !== "") {
-                document.getElementById("user").textContent = username;
-                document.getElementById("greet").innerHTML = `Hello ${username}`
-            }
-            if(bmiValue !== 0){
-                document.getElementById("bmicalc").textContent = bmiValue;
-            }
+                timerElement.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
+            }, 1000);
+
+            // Calories Burned
+            var caloriesBurnedElement = document.getElementById("calories-burned");
+            var caloriesBurned = 0;
+            setInterval(function () {
+                // Assuming a basic formula for calorie burning based on time spent
+                caloriesBurned += 5; // Adjust as needed
+                caloriesBurnedElement.textContent = caloriesBurned;
+            }, 60000); // Update every minute
         });
     </script>
 </body>
