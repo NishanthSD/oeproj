@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cardio Workouts - HealthCorp</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="icon" type="image/x-icon" href="/images/logo.jpeg">
+    <style>
+        body {
+            background-color: #f3f3f3;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        nav {
+            background-color: #26a69a;
+            height: 60px;
+            line-height: 60px;
+        }
+        nav .brand-logo {
+            margin-left: 10px;
+        }
+        nav img {
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+        .workout-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .workout-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .workout-header h2 {
+            color: #333;
+            margin: 0;
+        }
+        .timer-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        #timer {
+            font-size: 48px;
+            font-weight: bold;
+            color: #26a69a;
+            margin-bottom: 10px;
+        }
+        #pause-btn {
+            background-color: #26a69a;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        #pause-btn:hover {
+            background-color: #2bbbad;
+        }
+        .calorie-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        #calories-burned {
+            font-size: 24px;
+            color: #26a69a;
+            margin-top: 10px;
+        }
+        /* Custom select styling */
+        select {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url('data:image/svg+xml;utf8,<svg fill="#000000" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18px" height="18px"><path d="M7 10l5 5 5-5z" /></svg>');
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 20px;
+            cursor: pointer;
+        }
+        /* Hide default arrow in Firefox */
+        select::-ms-expand {
+            display: none;
+        }
+        /* Hover effect for select */
+        select:hover {
+            border-color: #26a69a;
+        }
+        /* Focus effect for select */
+        select:focus {
+            border-color: #26a69a;
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="index.html" class="brand-logo">
+                <img src="images/logo.jpeg" height="40px"/>
+                HealthCorp
+            </a>
+        </div>
+    </nav>
+
+    <div class="workout-container">
+        <div class="workout-header">
+            <h2>Running Workout</h2>
+        </div>
+        <div>
+            <label for="sele">Preferred Gait</label>
+            <select onchange="changeval()" id="sele">
+                <option value="3">Walk</option>
+                <option value="4">Medium</option>
+                <option value="6">Jog</option>
+            </select>
+        </div>
+        <div class="timer-container">
+            <h4>Timer</h4>
+            <div id="timer">00:00:00</div>
+            <button id="pause-btn">Pause</button>
+        </div>
+        <div class="calorie-container">
+            <h4>Calories Burned</h4>
+            <div id="calories-burned">0</div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        let val = 5;
+        document.addEventListener("DOMContentLoaded", function () {
+            var timerElement = document.getElementById("timer");
+            var timerInterval;
+            var seconds = 0, minutes = 0, hours = 0;
+            var isPaused = false;
+            pauseTimer();
+            function changeval(){
+                val = parseInt(document.getElementById("sele").value);
+            }
+            function startTimer() {
+                timerInterval = setInterval(function () {
+                    if (!isPaused) {
+                        seconds++;
+                        if (seconds >= 60) {
+                            seconds = 0;
+                            minutes++;
+                            if (minutes >= 60) {
+                                minutes = 0;
+                                hours++;
+                            }
+                        }
+                        timerElement.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
+                    }
+                }, 1000);
+            }
+
+            function pauseTimer() {
+                isPaused = true;
+                clearInterval(timerInterval);
+            }
+
+            function resumeTimer() {
+                isPaused = false;
+                startTimer();
+            }
+
+            document.getElementById("pause-btn").addEventListener("click", function () {
+                if (isPaused) {
+                    resumeTimer();
+                    this.textContent = "Pause";
+                } else {
+                    pauseTimer();
+                    this.textContent = "Resume";
+                }
+            });
+
+            startTimer();
+
+            var caloriesBurnedElement = document.getElementById("calories-burned");
+            var caloriesBurned = 0;
+
+            function calculateCaloriesBurned() {
+                if (!isPaused) {
+                    caloriesBurned += val; // Assuming a basic formula for calorie burning based on time spent
+                    caloriesBurnedElement.textContent = caloriesBurned;
+                }
+            }
+
+            setInterval(calculateCaloriesBurned, 60000); // Update every minute
+        });
+    </script>
+</body>
+</html>
