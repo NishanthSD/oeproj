@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Squat Workout Tutorial - HealthCorp</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="icon" type="image/x-icon" href="/images/logo.jpeg">
+  <style>
+    /* Existing CSS */
+    body {
+      background-color: #f3f3f3;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    nav {
+      background-color: #26a69a;
+      height: 60px;
+      line-height: 60px;
+    }
+    nav .brand-logo {
+      margin-left: 10px;
+    }
+    nav img {
+      vertical-align: middle;
+      margin-right: 10px;
+    }
+    .workout-container {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .exercise-description {
+      margin-bottom: 30px;
+    }
+    .exercise-description p {
+      font-size: 16px;
+      line-height: 1.5;
+    }
+    .exercise-media {
+      text-align: center;
+    }
+    .exercise-media img, .exercise-media video {
+      width: 100%;
+      max-width: 500px;
+      margin-bottom: 20px;
+    }
+    /* New CSS for Tips section */
+    .tips {
+      display: none;
+      padding: 10px;
+      border: 1px solid #26a69a;
+      border-radius: 5px;
+      margin-top: 10px;
+      margin-bottom: 20px;
+    }
+    .tips li {
+      margin-bottom: 5px;
+    }
+    /* Additional CSS for styling */
+    .benefit {
+      display: none;
+      background-color:none; /* Material Yellow */
+      padding: 10px;
+      border: 1px solid #26a69a;
+      border-radius: 5px;
+      margin-top: 20px;
+    }
+    .workout-header {
+      background-color: #26a69a;
+      color: #fff;
+      padding: 20px 0;
+      border-radius: 10px 10px 0 0;
+    }
+    .workout-header h2 {
+      margin: 0;
+      font-size: 36px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="container">
+      <a href="index.html" class="brand-logo">
+        <img src="images/logo.jpeg" height="40px"/>
+        HealthCorp
+      </a>
+    </div>
+  </nav>
+
+  <div class="workout-container">
+    <div class="workout-header">
+      <h2 >Squat Workout Tutorial</h2>
+    </div>
+    <div class="exercise-description">
+      <p>Squats are a fundamental exercise that works your entire lower body, including your quads, glutes, and hamstrings. They can be done with or without weights, and they're a great way to build strength and improve your overall fitness.</p>
+      <p>Here's how to do a proper squat:</p>
+    </div>
+    <div class="exercise-media">
+      <img src="/images/squat-stance-bottom.jpg" alt="Squat form image">
+      <p><b>Proper Squat Form</b></p>
+    </div>
+    <div class="exercise-description">
+      <ol>
+        <li>Stand with your feet shoulder-width apart and your toes pointed slightly outward.</li>
+        <li>Lower your body as if you're going to sit in a chair, keeping your back straight and your core engaged.</li>
+        <li>Make sure your knees don't track inwards, and keep your heels flat on the ground.</li>
+        <li>Descend until your thighs are parallel to the ground (or as low as you can comfortably go).</li>
+        <li>Push through your heels to return to the starting position.</li>
+      </ol>
+      <div class="exercise-media">
+        <button style="background-color: #26a69a;border-radius: 15px;color: #fff;padding:5px;" onclick="toggleTips()">Show Tips</button>
+        <div >
+          <ul  style="background-color: rgb(178, 225, 238);"class="tips" id="tips">
+            <li>Focus on keeping your core engaged throughout the movement.</li>
+            <li>Don't let your knees cave in. They should track in line with your toes.</li>
+            <li>Keep your chest lifted and avoid hunching your back.</li>
+            <li>Breathe out as you exert yourself on the way up.</li>
+            <li>Start with bodyweight squats and gradually add weight as you get stronger.</li>
+          </ul>
+          <br>
+        </div>
+        <div>
+            <button style="background-color: #26a69a;border-radius: 15px;color: #fff;padding:5px;" onclick="benefits()">Show Benefits</button>
+          <ul style="background-color: rgb(178, 225, 238);"class="benefit" id="benefit">
+            <li>Increased lower body strength and power.</li>
+            <li>Improved core stability and balance.</li>
+            <li>Enhanced bone density.</li>
+            <li>Boosted metabolism.</li>
+            <li>Functional movement for everyday activities.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="exercise-media">
+        <video width="560" height="315" controls>
+          <source src="/videos/video.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <p>Squat Tutorial Video</p>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    function toggleTips() {
+      var tips = document.getElementById("tips");
+      if (tips.style.display === "none") {
+        tips.style.display = "block";
+      } else {
+        tips.style.display = "none";
+      }
+    }
+    function benefits() {
+      var tips = document.getElementById("benefit");
+      if (benefit.style.display === "none") {
+        benefit.style.display = "block";
+      } else {
+        benefit.style.display = "none";
+      }
+    }
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>
