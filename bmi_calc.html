@@ -97,9 +97,9 @@
                                 ></a
                             >
                         </li>
-                        <li><a href="#">Calorie Planner</a></li>
+                        <li><a href="cal_planner.html">Calorie Planner</a></li>
                         <li><a href="/bmi_calc.html">BMI Calculator</a></li>
-                        <li><a href="#">About Our Company</a></li>
+                        <li><a href="about.html">About Our Company</a></li>
                         <li>
                             <a
                                 href="#"
@@ -133,6 +133,15 @@
                 <div id="result" class="result"></div>
                 <div id="meaning" class="meaning"></div>
             </div>
+            <ul id="workouts-dropdown" class="dropdown-content">
+                <li><a href="w1.html">Workout 1</a></li>
+                <li><a href="#">Workout 2</a></li>
+                <li><a href="#">Workout 3</a></li>
+                <li><a href="#">Workout 4</a></li>
+            </ul>
+            <ul id="user-dropdown" class="dropdown-content">
+                <li><p id="user">John Doe</p></li>
+            </ul>
         </div>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
@@ -184,7 +193,7 @@
                     }
                 });
                 let updatedBMIValue = bmiValue + 1;
-                document.cookie = `bmi=${updatedBMIValue}; path=/`;
+                document.cookie = `bmi=${updatedBMIValue}; path=/;expires=Fri, 31 Dec 9999 23:59:59 GMT`;
 
                             
         }

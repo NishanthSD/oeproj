@@ -90,14 +90,23 @@
                         <a href="#" class="dropdown-trigger" data-target="workouts-dropdown">Workouts<i class="material-icons right">arrow_drop_down</i></a>
                     </li>
                     <li><a href="cal_planner.html">Calorie Planner</a></li>
-                    <li><a href="/bmi_calc.html">BMI Calculator</a></li>
-                    <li><a href="#">About Our Company</a></li>
+                    <li><a href="bmi_calc.html">BMI Calculator</a></li>
+                    <li><a href="about.html">About Our Company</a></li>
                     <li>
                         <a href="#" class="dropdown-trigger" data-target="user-dropdown"><i class="material-icons">account_circle</i></a>
                     </li>
                 </ul>
             </div>
         </div>
+        <ul id="workouts-dropdown" class="dropdown-content">
+            <li><a href="w1.html">Workout 1</a></li>
+            <li><a href="#">Workout 2</a></li>
+            <li><a href="#">Workout 3</a></li>
+            <li><a href="#">Workout 4</a></li>
+        </ul>
+        <ul id="user-dropdown" class="dropdown-content">
+            <li><p id="user">John Doe</p></li>
+        </ul>
     </nav>
 
     <div class="dashboard-container">
@@ -108,17 +117,17 @@
             <div class="dashboard-stat">
                 <i class="material-icons">fitness_center</i>
                 <p>Total Workouts</p>
-                <p>10</p>
+                <p id="twkts">0</p>
             </div>
             <div class="dashboard-stat">
                 <i class="material-icons">local_dining</i>
                 <p>Calories Burned</p>
-                <p>5000</p>
+                <p></p>0
             </div>
             <div class="dashboard-stat">
                 <i class="material-icons">assignment</i>
                 <p>BMI Calculations</p>
-                <p id="bmicalc">50</p>
+                <p id="bmicalc">0</p>
             </div>
         </div>
         <div class="dashboard-content">
@@ -128,16 +137,6 @@
             </article>
         </div>
     </div>
-
-    <ul id="workouts-dropdown" class="dropdown-content">
-        <li><a href="w1.html">Workout 1</a></li>
-        <li><a href="#">Workout 2</a></li>
-        <li><a href="#">Workout 3</a></li>
-        <li><a href="#">Workout 4</a></li>
-    </ul>
-    <ul id="user-dropdown" class="dropdown-content">
-        <li><p id="user">John Doe</p></li>
-    </ul>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script>
@@ -150,6 +149,7 @@
             let cookies = document.cookie.split(";");
             let username = "";
             let bmiValue = 0;
+            let wkts = 0
             cookies.forEach((cookie) => {
                 let parts = cookie.split("=");
                 let name = parts[0].trim();
@@ -160,6 +160,9 @@
                 if(name === "bmi"){
                     bmiValue = parseInt(decodeURIComponent(value));
                 }
+                if(name === "wkts"){
+                    wkts = parseInt(decodeURIComponent(value));
+                }
             });
             if (username !== "") {
                 document.getElementById("user").textContent = username;
@@ -167,6 +170,9 @@
             }
             if(bmiValue !== 0){
                 document.getElementById("bmicalc").textContent = bmiValue;
+            }
+            if(wkts !== 0){
+                document.getElementById("twkts").textContent = wkts;
             }
         });
     </script>

@@ -4,7 +4,6 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Calorie Planner</title>
-        <!-- Materialize CSS -->
         <link
             href="https://fonts.googleapis.com/icon?family=Material+Icons"
             rel="stylesheet"
@@ -35,37 +34,30 @@
         <nav class="navbar">
             <div class="container text-white">
                 <div class="nav-wrapper">
-                    <img
-                        src="images/logo.jpeg"
-                        height="50px"
-                        style="margin: 10px"
-                    />
-                    <a href="index.html" class="brand-logo"> HealthCorp</a>
+                    <img src="images/logo.jpeg" height="40px" style="margin: 10px"/>
+                    <a href="index.html" class="brand-logo">HealthCorp</a>
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
                         <li>
-                            <a
-                                href="#"
-                                class="dropdown-trigger"
-                                data-target="workouts-dropdown"
-                                >Workouts<i class="material-icons right"
-                                    >arrow_drop_down</i
-                                ></a
-                            >
+                            <a href="#" class="dropdown-trigger" data-target="workouts-dropdown">Workouts<i class="material-icons right">arrow_drop_down</i></a>
                         </li>
-                        <li><a href="/cal_planner.html">Calorie Planner</a></li>
-                        <li><a href="/bmi_calc.html">BMI Calculator</a></li>
-                        <li><a href="#">About Our Company</a></li>
+                        <li><a href="cal_planner.html">Calorie Planner</a></li>
+                        <li><a href="bmi_calc.html">BMI Calculator</a></li>
+                        <li><a href="about.html">About Our Company</a></li>
                         <li>
-                            <a
-                                href="#"
-                                class="dropdown-trigger"
-                                data-target="user-dropdown"
-                                ><i class="material-icons">account_circle</i></a
-                            >
+                            <a href="#" class="dropdown-trigger" data-target="user-dropdown"><i class="material-icons">account_circle</i></a>
                         </li>
                     </ul>
                 </div>
             </div>
+            <ul id="workouts-dropdown" class="dropdown-content">
+                <li><a href="w1.html">Workout 1</a></li>
+                <li><a href="#">Workout 2</a></li>
+                <li><a href="#">Workout 3</a></li>
+                <li><a href="#">Workout 4</a></li>
+            </ul>
+            <ul id="user-dropdown" class="dropdown-content">
+                <li><p id="user">John Doe</p></li>
+            </ul>
         </nav>
 
         <main>
@@ -126,15 +118,7 @@
                 <div id="meal-plan" class="row"></div>
             </div>
         </main>
-
-        <footer>
-            <!-- Footer content -->
-        </footer>
-
-        <!-- Materialize JavaScript -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-        <!-- Your custom JavaScript file -->
-
         <script>
             function helo() {
                 var generatePlanButton =
@@ -221,19 +205,13 @@
                                 },
                             ];
                         }
-
-                        // Build the HTML for the meal plan table
                         var html =
                             "<table><thead><tr><th>Food</th><th>Calories</th><th>Grams</th><th>Total</th><th>Macros</th><th>Image</th></tr></thead><tbody>";
-
-                        // Loop through the meal data and append rows to the table
                         mealData.forEach((meal) => {
                             html += `<tr><td>${meal.food}</td><td>${meal.calories}</td><td>${meal.grams}</td><td>${meal.total}</td><td>${meal.macros}</td><td><img src="${meal.image}" alt="${meal.food}" style="width: 95px;"></td></tr>`;
                         });
 
                         html += "</tbody></table>";
-
-                        // Display the meal plan table in the designated div
                         document.getElementById("meal-plan").innerHTML = html;
                     });
                 } else {

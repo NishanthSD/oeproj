@@ -142,6 +142,19 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script>
+        let cookies = document.cookie.split(";");
+        let bmiValue = 0;
+        cookies.forEach((cookie) => {
+            let parts = cookie.split("=");
+            let name = parts[0].trim();
+            let value = parts[1];
+            if (name === "wkts") {
+                bmiValue = parseInt(decodeURIComponent(value));
+            }
+        });
+        let updatedBMIValue = bmiValue + 1;
+        document.cookie = `wkts=${updatedBMIValue}; path=/`;
+
         let val = 5;
         document.addEventListener("DOMContentLoaded", function () {
             var timerElement = document.getElementById("timer");

@@ -7,10 +7,85 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="icon" type="image/x-icon" href="/images/logo.jpeg">
+    <style>
+        body {
+            background-color: #f0f0f0;
+            color: #333;
+        }
+        .container {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .about-section {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .company-logo {
+            display: block;
+            margin: 0 auto;
+        }
+        h2 {
+            text-align: center;
+            margin-top: 10px;
+            color: #333;
+        }
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
-        <div class="nav-wrapper card-panel green accent-4">  
-            <h2 style="text-anchor: middle;"><img src="images/logo.jpeg" alt="Logo" height="100px">HeallthCorp</h2>
+    <nav class="navbar green">
+        <div class="container text-white">
+            <div class="nav-wrapper">
+                <img src="images/logo.jpeg" height="40px" style="margin: 10px"/>
+                <a href="index.html" class="brand-logo">HealthCorp</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li>
+                        <a href="#" class="dropdown-trigger" data-target="workouts-dropdown">Workouts<i class="material-icons right">arrow_drop_down</i></a>
+                    </li>
+                    <li><a href="cal_planner.html">Calorie Planner</a></li>
+                    <li><a href="bmi_calc.html">BMI Calculator</a></li>
+                    <li><a href="#">About Our Company</a></li>
+                    <li>
+                        <a href="#" class="dropdown-trigger" data-target="user-dropdown"><i class="material-icons">account_circle</i></a>
+                    </li>
+                </ul>
+            </div>
         </div>
+        <ul id="workouts-dropdown" class="dropdown-content">
+            <li><a href="w1.html">Workout 1</a></li>
+            <li><a href="#">Workout 2</a></li>
+            <li><a href="#">Workout 3</a></li>
+            <li><a href="#">Workout 4</a></li>
+        </ul>
+        <ul id="user-dropdown" class="dropdown-content">
+            <li><p id="user">John Doe</p></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <div class="about-section">
+            <div class="company-logo">
+                <img src="images/logo.jpeg" alt="Logo" height="150px">
+            </div>
+            <h2>About HealthCorp</h2>
+            <p>HealthCorp is dedicated to promoting health and wellness through innovative solutions and personalized experiences. Our mission is to empower individuals to lead healthier lives by providing access to reliable information, tools, and resources.</p>
+            <h3>Our Values</h3>
+            <ul>
+                <li><strong>Empowerment:</strong> We believe in empowering individuals to take control of their health.</li>
+                <li><strong>Innovation:</strong> We strive for continuous innovation to improve health outcomes.</li>
+                <li><strong>Accessibility:</strong> We are committed to making health resources accessible to everyone.</li>
+                <li><strong>Community:</strong> We foster a supportive community focused on shared health goals.</li>
+            </ul>
+            <h3>Meet Our Team</h3>
+            <p>Our team is composed of passionate individuals dedicated to making a positive impact on global health. Together, we work tirelessly to develop solutions that address the diverse needs of our users.</p>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
 </html>
